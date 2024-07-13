@@ -1,5 +1,6 @@
 import { config } from 'dotenv';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { join } from 'path';
 
 config();
 
@@ -10,7 +11,7 @@ const typeORMMysqlConfig: TypeOrmModuleOptions = {
     username: process.env.DATABASE_USERNAME,
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE_NAME,
-    entities: [__dirname + '/../**/*.entity.{ts}'],
+    entities: [join(__dirname, '**', '*.entity.{ts,js}')],
     synchronize: false // 서버 껐다 켰을 때 초기화 fasle
 };
 

@@ -19,11 +19,11 @@ export default class UserEntity {
     address:string
 
     @Column({name:'address_detail'})
-    addresDetail:string | null;
+    addressDetail:string | null;
 
     @Column({name:'profile_image'})
     profileImage:string | null;
 
     @Column({name:'agreed_personal'})
-    agreedPersonal:string
+    agreedPersonal:boolean;
 }

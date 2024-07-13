@@ -1,4 +1,4 @@
-enum ResponseConde {
+enum ResponseCode {
     SUCCESS = 'SU',
     VALIDATION_FAIL = 'VF',
     DUPLICATE_EMAIL = 'DE',
@@ -12,6 +12,6 @@ enum ResponseConde {
     DATABASE_ERROR = 'DBE',
 };
 
-export default ResponseConde;
+export default ResponseCode;
 
 // 나중에 정의하면 헷갈림. 확인 해야하니까. 
