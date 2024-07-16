@@ -30,3 +30,8 @@ nest cli -> nest g name op
 bearer token -> 인증 jwt
 
 cors - 다른 포트 상의 자원 공유
+
+---
+
+multer - multi part data 가져오게 해줌(?)
+@types/multer @nest/platform-express

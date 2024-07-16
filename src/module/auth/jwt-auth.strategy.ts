@@ -15,13 +15,13 @@ export default class JwtAuthStrategy extends PassportStrategy(Strategy) {
         })
     }
 
-    async validate (payload: any) {
-        const { sub } = payload;
-        const email = sub;
-        return email;
-    }
+    // async validate (payload: any) {
+    //     const { sub } = payload;
+    //     const email = sub;
+    //     return email;
+    // }
 
-    // async validate ({ sub }: any) {
-    //     return sub;
-    // } // 위랑 똑같음
+    async validate ({ sub }: any) {
+        return sub;
+    } // 위랑 똑같음
 }
