@@ -19,11 +19,11 @@ export default class BoardEntity {
     favoriteCount: number;
 
     @Column({name:'comment_count'})
-    commnetCount: number;
+    commentCount: number;
 
     @Column({name:'view_count'})
     viewCount: number;
 
-    @Column({name:'write_email'})
+    @Column({name:'email'})
     writeEmail: string;
 }
