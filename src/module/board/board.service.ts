@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { BoardListViewRepository, BoardRepository, CommentRepository, FavoriteRepository, ImageRepository, SearchLogRepository, UserRepository } from '../data-access/repository';
 import { PatchBoardRequestDto, PostBoardRequestDto, PostCommentRequestDto } from './dto/request';
-import {DeleteBoardResponseDto, GetCommnetListResponseDto, GetTop3ListResponseDto, PatchBoardResponseDto, PostBoardResponseDto, PostCommentResponseDto, PutFavoriteResponseDto} from './dto/response';
+import {DeleteBoardResponseDto, GetCommnetListResponseDto, GetTop3ListResponseDto, GetUserListResponseDto, PatchBoardResponseDto, PostBoardResponseDto, PostCommentResponseDto, PutFavoriteResponseDto} from './dto/response';
 import { GetBoardResponseDto, GetFavoriteListResponseDto, IncreaseViewCountResponseDto, GetLatestBoardListResponseDto, GetSearchListResponseDto } from './dto/response';
 
 @Injectable()
@@ -187,4 +187,13 @@ export class BoardService {
         return GetSearchListResponseDto.success(boardListViewEntities);
     }
 
+    async getUserList(email:string):Promise<GetUserListResponseDto>{
+
+        const isExistUser = await this.userRepository.existByEmail(email);
+        if(!isExistUser) GetUserListResponseDto.noExistUser();
+        
+        const boardListViewEntities = await this.boardListViewRepository.getUserList(email);
+
+        return GetUserListResponseDto.success(boardListViewEntities);
+    }
 }

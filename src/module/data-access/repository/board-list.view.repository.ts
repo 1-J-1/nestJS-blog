@@ -55,4 +55,17 @@ export default class BoardListViewRepository {
             ResponseDto.databaseError();
         }
     }
+
+    async getUserList(email:string){
+        try{
+            const boardListViewEntities = this.repository.find({
+                where: {writerEmail:email},
+                order:{writeDatetime:'DESC'}
+            })
+            return boardListViewEntities;
+        } catch(e) {
+            this.logger.error(e.message);
+            ResponseDto.databaseError();
+        }
+    }
 }

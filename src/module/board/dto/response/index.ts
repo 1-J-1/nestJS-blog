@@ -10,6 +10,7 @@ import IncreaseViewCountResponseDto from './increase-view-count.response.dto';
 import GetLatestBoardListResponseDto from './get-latest-board-list.response.dto';
 import GetTop3ListResponseDto from './get-top-3-list.response.dto';
 import GetSearchListResponseDto from './get-search-list.response.dto';
+import GetUserListResponseDto from './get-user-list.response.dto';
 
 export {
     PostBoardResponseDto,
@@ -23,5 +24,6 @@ export {
     IncreaseViewCountResponseDto,
     GetLatestBoardListResponseDto,
     GetTop3ListResponseDto,
-    GetSearchListResponseDto
+    GetSearchListResponseDto,
+    GetUserListResponseDto
 }

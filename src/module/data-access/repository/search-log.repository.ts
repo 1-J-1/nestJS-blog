@@ -3,6 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { SearchLogEntity } from "../entities";
 import { DataSource, Repository } from "typeorm";
 import { ResponseDto } from "@/types/classes";
+import { GetPopularListResultSet, GetRelationListResultSet } from "../entities/result-set";
 
 @Injectable()
 export default class SearchLogRepository {
@@ -40,5 +41,44 @@ export default class SearchLogRepository {
         }
     }
 
+    async getPopularList(){
+        try{
+            const resultSets = await this.dataSource.createQueryBuilder()
+                .select('S.search_word', 'searchWord')
+                .addSelect('COUNT(S.search_word)', 'count')
+                .from('search_log', 'S')
+                .where('S.relation = :relation', {relation:false})
+                .groupBy('searchWord')
+                .orderBy('count', 'DESC')
+                .limit(15)
+                .getRawMany()
+
+            return resultSets as GetPopularListResultSet[];
+        } catch(e) {
+            this.logger.error(e.message);
+            ResponseDto.databaseError();
+        }
+    }
+
+    async getRelationList(searchWord:string){
+        try{
+            const resultSets = await this.dataSource.createQueryBuilder()
+                .select('S.relation_word', 'relationWord')
+                .addSelect('count(S.relation_word)', 'count')
+                .from('search_log','S')
+                .where('S.search_word = :searchWord', {searchWord})
+                .andWhere('S.relation_word is not null')
+                .groupBy('relationWord')
+                .orderBy('count', 'DESC')
+                .limit(15)
+                .getRawMany()
+
+            return resultSets as GetRelationListResultSet[];
+
+        } catch(e){
+            this.logger.error(e.message);
+            ResponseDto.databaseError();
+        }
+    }
  
 }
