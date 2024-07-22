@@ -1,10 +1,10 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({name:'image'})
+@Entity({name:'comment'})
 export default class CommentEntity{
 
     @PrimaryGeneratedColumn({name:'comment_number'})
-    commnetNumber: number;
+    commentNumber: number;
 
     @Column({name:'content'})
     content:string;
@@ -16,5 +16,5 @@ export default class CommentEntity{
     userEmail:string;
 
     @Column({name:'board_number'})
-    boardNumber:string;
+    boardNumber:number;
 }

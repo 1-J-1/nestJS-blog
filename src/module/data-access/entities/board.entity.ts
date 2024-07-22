@@ -24,6 +24,6 @@ export default class BoardEntity {
     @Column({name:'view_count'})
     viewCount: number;
 
-    @Column({name:'email'})
-    writeEmail: string;
+    @Column({name:'writer_email'})
+    writerEmail: string;
 }

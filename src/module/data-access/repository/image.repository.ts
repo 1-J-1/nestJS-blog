@@ -22,6 +22,7 @@ export default class ImageRepository {
             
             const imageEntities = this.repository.create(entities);
             return imageEntities;
+
         } catch (e) {
             this.logger.error(e.message);
             ResponseDto.databaseError();
@@ -32,6 +33,25 @@ export default class ImageRepository {
         try{
             return await this.repository.save(imageEntities)
         } catch(e) {
+            this.logger.error(e.message);
+            ResponseDto.databaseError();
+        }
+    }
+
+    async findByBoardNumber(boardNumber:number) {
+        try {
+            const imageEntities = await this.repository.find({where: {boardNumber}});
+            return imageEntities;
+        } catch(e) {
+            this.logger.error(e.message);
+            ResponseDto.databaseError();
+        }
+    }
+
+    async deleteByBoardNumber(boardNumber:number){
+        try{ 
+            await this.repository.delete({boardNumber});
+        } catch(e){
             this.logger.error(e.message);
             ResponseDto.databaseError();
         }
