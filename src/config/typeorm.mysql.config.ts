@@ -18,6 +18,3 @@ const typeORMMysqlConfig: TypeOrmModuleOptions = {
 };
 
 export default typeORMMysqlConfig;
-
-
-
